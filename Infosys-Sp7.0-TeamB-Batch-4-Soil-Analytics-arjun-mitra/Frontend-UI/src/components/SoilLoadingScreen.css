@@ -1,0 +1,479 @@
+.soil-loading-screen {
+  --loading-forest: #245c3a;
+  --loading-emerald: #18794e;
+  --loading-ivory: #f8f7f0;
+  --loading-ink: #352e20;
+  --loading-muted: #817b6d;
+  position: fixed;
+  z-index: 1000;
+  inset: 0 auto auto 0;
+  width: 100vw;
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 47%, rgba(255, 255, 252, 0.92), rgba(248, 247, 240, 0) 55%),
+    var(--loading-ivory);
+  color: var(--loading-ink);
+  opacity: 1;
+  transition: opacity 400ms ease, visibility 400ms ease;
+}
+
+.soil-loading-screen::before,
+.soil-loading-screen::after {
+  position: absolute;
+  content: '';
+  pointer-events: none;
+}
+
+.soil-loading-screen::before {
+  inset: 0;
+  opacity: 0.34;
+  background-image: radial-gradient(rgba(89, 100, 68, 0.13) 0.55px, transparent 0.65px);
+  background-size: 8px 8px;
+  mask-image: linear-gradient(90deg, transparent 12%, #000 50%, transparent 88%);
+}
+
+.soil-loading-screen::after {
+  width: min(76vmin, 820px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(67, 99, 67, 0.065);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 34px rgba(67, 99, 67, 0.022),
+    0 0 0 68px rgba(67, 99, 67, 0.018);
+}
+
+.soil-loading-composition {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: min(100%, 1080px);
+  min-height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px 20px 32px;
+  animation: loading-arrive 700ms cubic-bezier(0.2, 0.75, 0.25, 1) both;
+}
+
+.loading-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+}
+
+.loading-brand-mark {
+  width: clamp(34px, 5vw, 42px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 2px 3px rgba(36, 92, 58, 0.08));
+}
+
+.loading-wordmark {
+  display: flex;
+  margin: 0;
+  font-family: Inter, "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(42px, 7vw, 58px);
+  font-weight: 650;
+  letter-spacing: -0.065em;
+  line-height: 1;
+}
+
+.loading-wordmark span:first-child {
+  color: var(--loading-forest);
+}
+
+.loading-wordmark span:last-child {
+  color: var(--loading-emerald);
+}
+
+.loading-tagline {
+  margin: 13px 0 0;
+  color: #706d5f;
+  font-family: Inter, "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
+  font-size: clamp(13px, 2vw, 15px);
+  font-weight: 400;
+  letter-spacing: 0.015em;
+  text-align: center;
+}
+
+.soil-stage {
+  position: relative;
+  width: min(560px, 100vw);
+  aspect-ratio: 560 / 380;
+  margin: 4px 0 -1px;
+  isolation: isolate;
+}
+
+.soil-illustration {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 19px 16px rgba(65, 46, 33, 0.09));
+}
+
+.seedling {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: seedling-breathe 4.2s ease-in-out infinite;
+}
+
+.orbit-ring {
+  transform-box: view-box;
+  transform-origin: 50% 54%;
+  animation: soil-orbit 12s linear infinite;
+}
+
+.soil-scan-line {
+  animation: scan-glint 2.8s ease-in-out infinite;
+}
+
+.soil-scan-glow {
+  animation: scan-glint 2.8s ease-in-out infinite;
+}
+
+.data-point {
+  filter: drop-shadow(0 0 3px rgba(236, 197, 123, 0.72));
+}
+
+.data-point-one {
+  animation: nutrient-travel-one 3.4s ease-in-out infinite;
+}
+
+.data-point-two {
+  animation: nutrient-travel-two 3.8s ease-in-out infinite;
+}
+
+.data-point-three {
+  animation: nutrient-travel-three 3.2s ease-in-out infinite;
+}
+
+.data-point-four {
+  animation: nutrient-travel-four 3.6s ease-in-out infinite;
+}
+
+.soil-nutrient {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  min-width: 90px;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px 7px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.84);
+  border-radius: 999px;
+  background: rgba(255, 254, 249, 0.76);
+  box-shadow: 0 6px 20px rgba(57, 68, 47, 0.07);
+  color: #686759;
+  backdrop-filter: blur(9px);
+  animation: marker-arrive 500ms ease both, marker-breathe 4.8s ease-in-out infinite;
+}
+
+.nutrient-indicator {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #c69b58;
+  box-shadow: 0 0 0 3px rgba(198, 155, 88, 0.12);
+}
+
+.nutrient-symbol {
+  color: var(--loading-forest);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+}
+
+.nutrient-label {
+  font-size: 10px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.nutrient-n {
+  top: 45%;
+  left: 3.6%;
+  animation-delay: 120ms, 0s;
+}
+
+.nutrient-p {
+  top: 65%;
+  left: 0;
+  animation-delay: 240ms, 0.5s;
+}
+
+.nutrient-k {
+  top: 45%;
+  right: 2%;
+  animation-delay: 360ms, 1s;
+}
+
+.nutrient-ph {
+  top: 66%;
+  right: 0;
+  animation-delay: 480ms, 1.5s;
+}
+
+.loading-progress {
+  display: flex;
+  width: min(290px, 82vw);
+  flex-direction: column;
+  align-items: center;
+  margin-top: -2px;
+}
+
+.loading-status {
+  margin: 0 0 17px;
+  color: #4b4c40;
+  font-family: Inter, "Avenir Next", Avenir, "Segoe UI", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 450;
+  letter-spacing: 0.005em;
+  text-align: center;
+}
+
+.loading-progress-track {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(36, 92, 58, 0.12);
+}
+
+.loading-progress-highlight {
+  position: absolute;
+  top: 0;
+  left: -38%;
+  width: 38%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(24, 121, 78, 0), #18794e 55%, #9aca9e);
+  animation: progress-travel 1.8s cubic-bezier(0.55, 0, 0.35, 1) infinite;
+}
+
+.loading-footnote {
+  margin: 14px 0 0;
+  color: #8b897e;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-align: center;
+}
+
+.loading-footnote span {
+  padding: 0 4px;
+  color: #b59660;
+}
+
+.soil-loading-screen.is-exiting {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes loading-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marker-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes marker-breathe {
+  0%,
+  100% {
+    box-shadow: 0 6px 20px rgba(57, 68, 47, 0.07);
+  }
+
+  50% {
+    box-shadow: 0 6px 20px rgba(57, 68, 47, 0.07), 0 0 0 2px rgba(24, 121, 78, 0.06);
+  }
+}
+
+@keyframes seedling-breathe {
+  0%,
+  100% {
+    transform: rotate(-0.5deg);
+  }
+
+  50% {
+    transform: rotate(0.7deg);
+  }
+}
+
+@keyframes soil-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scan-glint {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: translateY(-10px);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes nutrient-travel-one {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.45;
+  }
+
+  52% {
+    transform: translate(57px, -21px);
+    opacity: 1;
+  }
+}
+
+@keyframes nutrient-travel-two {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.45;
+  }
+
+  55% {
+    transform: translate(-53px, -18px);
+    opacity: 1;
+  }
+}
+
+@keyframes nutrient-travel-three {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.38;
+  }
+
+  48% {
+    transform: translate(41px, -13px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes nutrient-travel-four {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.38;
+  }
+
+  50% {
+    transform: translate(-42px, -15px);
+    opacity: 0.95;
+  }
+}
+
+@keyframes progress-travel {
+  to {
+    left: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .soil-loading-composition {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .soil-stage {
+    width: min(560px, calc(100vw - 48px));
+    margin-top: 14px;
+    margin-bottom: 9px;
+  }
+
+  .soil-nutrient {
+    min-width: 0;
+    gap: 6px;
+    padding: 6px 8px 6px 7px;
+  }
+
+  .nutrient-label {
+    font-size: 9px;
+  }
+
+  .nutrient-n {
+    left: 1%;
+  }
+
+  .nutrient-p {
+    left: 0;
+  }
+
+  .nutrient-k {
+    right: 0;
+  }
+
+  .nutrient-ph {
+    right: 0;
+  }
+}
+
+@media (max-width: 360px) {
+  .nutrient-label {
+    display: none;
+  }
+
+  .soil-nutrient {
+    min-width: 34px;
+    justify-content: center;
+    padding: 7px;
+  }
+
+  .soil-stage {
+    margin-top: 22px;
+    margin-bottom: 17px;
+  }
+
+  .loading-footnote {
+    font-size: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .soil-loading-composition,
+  .seedling,
+  .orbit-ring,
+  .soil-scan-line,
+  .soil-scan-glow,
+  .data-point,
+  .soil-nutrient,
+  .loading-progress-highlight {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .soil-loading-screen {
+    transition-duration: 1ms;
+  }
+}

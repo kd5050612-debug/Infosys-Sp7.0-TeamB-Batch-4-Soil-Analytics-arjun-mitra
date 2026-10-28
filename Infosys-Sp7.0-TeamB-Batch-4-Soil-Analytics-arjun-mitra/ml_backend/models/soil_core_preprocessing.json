@@ -1,0 +1,48 @@
+{
+  "dataset": "grano1/core_sample_image_data",
+  "image_column": "image",
+  "label_column": "HB",
+  "image_size": 128,
+  "channels": 3,
+  "normalize_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "normalize_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "label_names": [
+    "G",
+    "S",
+    "T",
+    "U",
+    "fG",
+    "fS",
+    "fS+U",
+    "fS+mS",
+    "gS",
+    "mG",
+    "mS"
+  ],
+  "label_to_id": {
+    "G": 0,
+    "S": 1,
+    "T": 2,
+    "U": 3,
+    "fG": 4,
+    "fS": 5,
+    "fS+U": 6,
+    "fS+mS": 7,
+    "gS": 8,
+    "mG": 9,
+    "mS": 10
+  },
+  "split_sizes": {
+    "train": 2883,
+    "val": 360,
+    "test": 361
+  }
+}

@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #352e20;
+  background: #eae3d4;
+  font-synthesis:none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*{
+  box-sizing: border-box;
+}
+
+.hero-title-line{
+  display:block;
+  animation:hero-title-reveal 850ms cubic-bezier(.2,.75,.25,1) both;
+  animation-delay:5.05s;
+}
+
+.hero-title-line--second{
+  animation-delay:5.17s;
+}
+
+.hero-title-line--third{
+  animation-delay:5.29s;
+}
+
+@keyframes hero-title-reveal{
+  from{
+    clip-path:inset(0 100% 0 0);
+    opacity:0;
+    transform:translateY(.12em);
+  }
+  to{
+    clip-path:inset(0);
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-title-line{
+    animation:none;
+  }
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input,
+textarea{
+  font:inherit;
+}
+
+button,
+a{
+  -webkit-tap-highlight-color: transparent;
+}
+
+img{
+  display: block;
+  max-width: 100%;
+}
